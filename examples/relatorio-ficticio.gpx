@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="LOFRANO fixture original; não é trajeto real">
+  <trk><name>Exemplo sintético junto ao antimeridiano</name>
+    <trkseg>
+      <trkpt lat="-10" lon="179.99"><ele>50</ele><time>2026-01-01T11:00:00Z</time></trkpt>
+      <trkpt lat="-10.001" lon="179.995"><ele>68</ele><time>2026-01-01T11:01:00Z</time></trkpt>
+      <trkpt lat="-9.999" lon="-179.999"><time>2026-01-01T11:02:00Z</time></trkpt>
+      <trkpt lat="-10.002" lon="-179.995"><ele>60</ele><time>2026-01-01T11:03:00Z</time></trkpt>
+    </trkseg>
+    <trkseg><trkpt lat="-10.004" lon="-179.992"><ele>45</ele><time>2026-01-01T11:05:00Z</time></trkpt></trkseg>
+    <trkseg/>
+  </trk>
+</gpx>

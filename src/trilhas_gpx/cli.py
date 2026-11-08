@@ -108,7 +108,7 @@ def main(argv=None) -> int:
     parser = Parser(description='Analise um GPX 1.1 local. Dados não são enviados a serviços externos.')
     parser.add_argument('input', metavar='INPUT', help='Arquivo regular GPX UTF-8, ou - para stdin explícito.')
     parser.add_argument('--version', action='version', version=f'trilhas-gpx {__version__}')
-    parser.add_argument('--format', choices=['summary', 'json', 'csv', 'geojson'], default='summary', help='Formato da saída (padrão: summary).')
+    parser.add_argument('--format', choices=['summary', 'json', 'csv', 'geojson', 'svg'], default='summary', help='Formato da saída (padrão: summary).')
     parser.add_argument('--output', type=Path, help='Novo arquivo de saída; nunca sobrescreve existentes.')
     parser.add_argument('--max-gap-seconds', default='300', help='Intervalo máximo utilizável entre horários, em segundos (0, 86400].')
     parser.add_argument('--moving-threshold-kmh', default='1', help='Velocidade mínima para tempo em movimento, em km/h [0, 1000].')
@@ -125,6 +125,9 @@ def main(argv=None) -> int:
             text = _summary(report)
         elif args.format == 'csv':
             text = points_csv(book)
+        elif args.format == 'svg':
+            from .svg import to_svg
+            text = to_svg(book, max_gap_seconds=max_gap, moving_threshold_kmh=threshold)
         else:
             document = report if args.format == 'json' else to_geojson(book)
             text = json.dumps(document, ensure_ascii=False, allow_nan=False, indent=2) + '\n'

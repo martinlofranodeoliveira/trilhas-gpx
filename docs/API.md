@@ -10,6 +10,7 @@ parse_gpx(data: bytes) -> GPX
 analyze(gpx, *, max_gap_seconds=300.0, moving_threshold_kmh=1.0) -> dict
 to_geojson(gpx) -> dict
 points_csv(gpx) -> str
+to_svg(gpx, *, max_gap_seconds=300.0, moving_threshold_kmh=1.0) -> str
 ```
 
 `parse_gpx` exige bytes UTF-8, BOM opcional. Coordenadas usam graus decimais, elevação metros e horários UTC conscientes de fuso. Horários de origem devem ter `Z` ou offset explícito; valores sem fuso, leap seconds e frações com mais de seis dígitos são recusados. Números GPX são decimais sem expoente, `NaN` ou infinito. A faixa é verificada em decimal antes de converter para float. Quando longitude decimal válida imediatamente abaixo de180 arredondaria para180, usa-se o float representável imediatamente abaixo do limite;180 exato continua inválido. Isso é representação aproximada, não preservação de todos os dígitos decimais originais.
@@ -73,3 +74,13 @@ Campos extra/extensions são ignorados para análise, mas continuam sujeitos aos
 `GPXError(ValueError)` tem `.code`. Mensagens não repetem coordenadas, texto ou caminhos de entrada. `XML_UNSAFE` para DTD/entidades; `XML_INVALID` para encoding/XML inválido; `GPX_FORMAT` para root/versão/creator/estrutura de campos inválidos; `COORD_INVALID`, `ELEVATION_INVALID`, `TIME_INVALID` para valores; `LIMIT_EXCEEDED`, `MODEL_INVALID`, `OPTION_INVALID` para limites/modelos/opções. Campo XML `time` duplicado é `GPX_FORMAT`, valor temporal inválido é `TIME_INVALID`.
 
 Na CLI: sucesso exit0; falha exit2 com `{ "error": { "code": "...", "message": "..." } }` no stderr. Acrescenta `ARGUMENT_ERROR`, `IO_ERROR`, `OUTPUT_EXISTS`. Nenhuma saída de resultado é publicada se parsing/análise falhar. Destino existente também é recusado quando é symlink, inclusive quebrado. O protocolo exclusivo usa temporário no mesmo diretório e hard link; sistemas sem suporte podem retornar `IO_ERROR`.
+
+## SVG passivo (incremento do main)
+
+`to_svg` devolve um documento SVG UTF-8 determinístico, viewBox1200×960. O resumo usa as estatísticas existentes. Trajeto e perfil mantêm grupos separados por segmento; IDs são `tN-sN`, sem nomes, creator, horários ou caminhos. O perfil mostra somente elevações conhecidas, não interpola ausência nem cria ligação entre segmentos. Distância acumulada soma apenas arestas internas, sem adicionar saltos entre segmentos. Pontos isolados, repetidos e faixas constantes permanecem finitos.
+
+O trajeto é esquemático, sem mapa base, com a mesma escala em pixels por grau de latitude/longitude. A projeção distorce distâncias reais, especialmente perto dos polos. Longitude escolhe a emenda no meio do maior intervalo circular sem amostras; empate escolhe o menor início normalizado em[0,360). Arestas seguem o delta curto, com empate de180° para+180°, e são cortadas na emenda com interpolação linear da latitude. Não é geodesia elipsoidal ou navegação.
+
+O inventário visível limita-se aos primeiros8segmentos e informa quantos foram omitidos dessa lista; todos os segmentos continuam em grupos do documento. Sem pontos/elevações, mensagens explícitas substituem desenhos inventados. O limite completo de saída é32MiB na API e na CLI, com LIMIT_EXCEEDED, sem truncamento nem arquivo parcial.
+
+SVG não contém script, atributos de evento, foreignObject, imagens, use/href, folhas de estilo, fontes ou recursos externos. Texto arbitrário GPX não é renderizado. Isso não anonimiza posições: gráficos e atributos `data-*` preservam valores de coordenadas/altitudes e identidades numéricas necessárias para inspeção. A API não realiza I/O ou chamadas externas. Os formatos JSON/CSV/GeoJSON e schema1 não mudaram.

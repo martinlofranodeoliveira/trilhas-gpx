@@ -2,7 +2,7 @@
 
 **Entenda o que seu registro de GPS realmente contém, sem enviá-lo para um serviço.**
 
-Biblioteca e ferramenta de terminal da [LOFRANO TECNOLOGIA](https://lofranotecnologia.com.br) para arquivos **GPX 1.1**: distância horizontal aproximada, subida/descida observadas, cobertura de horários e exportações CSV/GeoJSON. Código aberto **MIT**, documentação em português e nenhuma dependência de execução além do Python.
+Biblioteca e ferramenta de terminal da [LOFRANO TECNOLOGIA](https://lofranotecnologia.com.br) para arquivos **GPX 1.1**: distância horizontal aproximada, subida/descida observadas, cobertura de horários e exportações CSV/GeoJSON/SVG. Código aberto **MIT**, documentação em português e nenhuma dependência de execução além do Python.
 
 ## Um problema concreto
 
@@ -11,6 +11,7 @@ Uma gravação pode ter paradas, horários ausentes, elevações incompletas ou 
 - Conserva trilhas e segmentos separados, inclusive segmentos vazios e com um ponto.
 - Informa quantas arestas têm elevação, horários utilizáveis, horários inválidos/ausentes ou intervalo longo.
 - Exporta pontos em CSV e segmentos em GeoJSON, cortando linhas no antimeridiano.
+- Gera um relatório SVG passivo com resumo, trajeto esquemático e perfil de elevação, sem mapa externo.
 - Processa somente o arquivo fornecido; não captura GPS, não envia arquivos e não acessa mapas.
 - Lê sem alterar o original e publica saídas completas **sem sobrescrever** arquivos existentes.
 
@@ -35,6 +36,7 @@ trilhas-gpx examples/percurso-ficticio.gpx
 trilhas-gpx examples/percurso-ficticio.gpx --format json
 trilhas-gpx examples/percurso-ficticio.gpx --format csv --output pontos.csv
 trilhas-gpx examples/percurso-ficticio.gpx --format geojson --output percurso.geojson
+trilhas-gpx examples/percurso-ficticio.gpx --format svg --output relatorio.svg
 ```
 
 O exemplo tem dois segmentos de registro separados: **não** existe uma linha entre eles. O trajeto é sintético, não uma sugestão de rota real. O resultado completo de referência fica em [examples/resultado.json](examples/resultado.json).
@@ -49,13 +51,25 @@ cat examples/percurso-ficticio.gpx | python -m trilhas_gpx - --format json
 
 | Opção | Padrão | Significado |
 |---|---|---|
-| `--format` | `summary` | `summary`, `json`, `csv` ou `geojson` |
+| `--format` | `summary` | `summary`, `json`, `csv`, `geojson` ou `svg` |
 | `--output` | stdout | Arquivo novo; destino existente, inclusive symlink, é recusado |
 | `--max-gap-seconds` | `300` | Arestas com intervalo maior são excluídas do cálculo de velocidade; intervalo permitido `(0,86400]` |
 | `--moving-threshold-kmh` | `1` | Limiar inclusivo para classificar tempo em movimento, em `[0,1000]` km/h |
 | `--version` / `--help` | — | Versão e ajuda |
 
 A distância total continua incluindo arestas com intervalo longo ou horário ausente. **Velocidade média** utiliza somente distância e tempo das arestas temporais elegíveis. O tempo entre o primeiro e último horário é outro indicador, não o denominador dessa média. Veja [o método e suas limitações](docs/METODO.md).
+
+## Ver o percurso e a elevação localmente
+
+```sh
+trilhas-gpx examples/relatorio-ficticio.gpx --format svg --output minha-trilha.svg
+```
+
+Abra o SVG em um navegador ou visualizador compatível. O desenho é um artefato estático: sem JavaScript, imagens vinculadas, fontes externas ou mapas. A distância e a cobertura seguem o mesmo método dos formatos anteriores.
+
+![Relatório de exemplo fictício](examples/relatorio-ficticio.svg)
+
+O perfil conserva lacunas de elevação e separa segmentos. Pontos com elevação isolada continuam marcados. O trajeto usa uma emenda circular para apresentar percursos próximos ao antimeridiano de forma compacta, com corte de linhas quando necessário; não é um mapa nem escala em metros. Creator, nomes e horários não entram no SVG, mas **o desenho e seus atributos continuam representando coordenadas e altitudes**. Não compartilhe trajetos pessoais sem avaliar isso.
 
 ## Usar como biblioteca
 

@@ -41,3 +41,11 @@ Não use estes números para afirmar segurança, dificuldade, esforço, aptidão
 - [Python: cuidados com XML não confiável](https://docs.python.org/3/library/xml.html#xml-security).
 
 O código e as fixtures são originais; as referências não constituem certificação deste parser.
+
+## Relatório SVG
+
+O perfil usa a distância acumulada das mesmas arestas Haversine e marca cada elevação conhecida. Não traça uma linha entre dados ausentes nem entre segmentos. Uma nova gravação começa na distância final da anterior, sem adicionar a distância do salto geográfico. Zero distância pode formar uma linha vertical de elevação, sem divisões por zero. Subida/descida continuam sem suavização de ruído.
+
+Para o trajeto, a longitude é circular: a emenda fica no meio do maior intervalo circular entre amostras, com desempate pelo menor início normalizado. Isso evita que179°→-179° seja mostrado como um salto interior de358°. Uma aresta que atravesse essa emenda é dividida nas bordas; a latitude na borda é interpolada linearmente. A projeção tem proporção igual em graus, não em metros, e não garante forma/distância geográfica precisa. Não há mapa, geocodificação ou navegação.
+
+Creator, nomes e horários são omitidos no SVG, mas a forma, pontos e atributos continuam representando coordenadas/altitudes. Analise a privacidade antes de compartilhar o arquivo. O SVG é passivo e independente de recursos externos; não substitui ferramentas GIS nem a análise dos dados originais.
