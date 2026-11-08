@@ -1,0 +1,5 @@
+include LICENSE README.md CHANGELOG.md CONTRIBUTING.md THIRD_PARTY_NOTICES.md
+recursive-include examples *.gpx *.json *.geojson *.csv
+recursive-include docs *.md
+recursive-include tests *.py
+include scripts/check.py

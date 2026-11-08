@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="LOFRANO fixture fictícia">
+  <trk><name>Travessia sintética do antimeridiano · não é rota real</name>
+    <trkseg>
+      <trkpt lat="10" lon="179"><ele>20</ele></trkpt>
+      <trkpt lat="12" lon="-179"><ele>40</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

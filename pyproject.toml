@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=78.1.1,<81", "wheel>=0.45,<1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trilhas-gpx"
+version = "0.1.0"
+description = "Analise percursos GPX locais e exporte distância, elevação, cobertura temporal, CSV e GeoJSON."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "Martin Lofrano · LOFRANO TECNOLOGIA"}]
+keywords = ["gpx", "trilhas", "ciclismo", "gps", "offline", "geojson"]
+classifiers = ["Programming Language :: Python :: 3", "Operating System :: POSIX", "Topic :: Scientific/Engineering :: GIS"]
+
+[project.urls]
+Repository = "https://github.com/martinlofranodeoliveira/trilhas-gpx"
+Documentation = "https://github.com/martinlofranodeoliveira/trilhas-gpx#readme"
+
+[project.scripts]
+trilhas-gpx = "trilhas_gpx.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

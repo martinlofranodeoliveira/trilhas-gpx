@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="LOFRANO exemplo fictício">
+  <trk><name>Exemplo equatorial · não é rota real</name>
+    <trkseg>
+      <trkpt lat="0" lon="0"><ele>100</ele><time>2026-01-01T09:00:00Z</time></trkpt>
+      <trkpt lat="0" lon="0.001"><ele>110</ele><time>2026-01-01T09:01:00Z</time></trkpt>
+      <trkpt lat="0" lon="0.002"><ele>105</ele><time>2026-01-01T09:02:00Z</time></trkpt>
+    </trkseg>
+    <trkseg>
+      <trkpt lat="0" lon="1"><ele>200</ele><time>2026-01-01T10:00:00Z</time></trkpt>
+      <trkpt lat="0" lon="1.001"><time>2026-01-01T10:10:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "t1-s1",
+      "properties": {
+        "track_index": 1,
+        "segment_index": 1,
+        "name": "Travessia sintética do antimeridiano · não é rota real",
+        "point_count": 2
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              179.0,
+              10.0,
+              20.0
+            ],
+            [
+              180.0,
+              11.0,
+              30.0
+            ]
+          ],
+          [
+            [
+              -180.0,
+              11.0,
+              30.0
+            ],
+            [
+              -179.0,
+              12.0,
+              40.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "method": {
+    "earth_radius_m": 6371008.8,
+    "max_gap_seconds": 300.0,
+    "moving_threshold_kmh": 1.0
+  },
+  "source": {
+    "creator": "LOFRANO exemplo fictício",
+    "track_count": 1,
+    "segment_count": 2,
+    "point_count": 5,
+    "ignored_waypoints": 0,
+    "ignored_routes": 0
+  },
+  "totals": {
+    "point_count": 5,
+    "edge_count": 3,
+    "distance_m": 333.5852407021915,
+    "ascent_m": 10.0,
+    "descent_m": 5.0,
+    "elevation_edges": 2,
+    "missing_elevation_edges": 1,
+    "usable_time_edges": 2,
+    "invalid_time_edges": 0,
+    "gap_time_edges": 1,
+    "usable_time_s": 120.0,
+    "usable_distance_m": 222.39016046812768,
+    "moving_time_s": 120.0,
+    "moving_distance_m": 222.39016046812768,
+    "average_speed_kmh": 6.671704814043831,
+    "moving_speed_kmh": 6.671704814043831,
+    "start_time": "2026-01-01T09:00:00Z",
+    "end_time": "2026-01-01T10:10:00Z",
+    "elapsed_span_s": 4200.0,
+    "bounds": [
+      0.0,
+      0.0,
+      1.001,
+      0.0
+    ]
+  },
+  "segments": [
+    {
+      "track_index": 1,
+      "segment_index": 1,
+      "name": "Exemplo equatorial · não é rota real",
+      "point_count": 3,
+      "edge_count": 2,
+      "distance_m": 222.39016046812768,
+      "ascent_m": 10.0,
+      "descent_m": 5.0,
+      "elevation_edges": 2,
+      "missing_elevation_edges": 0,
+      "usable_time_edges": 2,
+      "invalid_time_edges": 0,
+      "gap_time_edges": 0,
+      "usable_time_s": 120.0,
+      "usable_distance_m": 222.39016046812768,
+      "moving_time_s": 120.0,
+      "moving_distance_m": 222.39016046812768,
+      "average_speed_kmh": 6.671704814043831,
+      "moving_speed_kmh": 6.671704814043831,
+      "start_time": "2026-01-01T09:00:00Z",
+      "end_time": "2026-01-01T09:02:00Z",
+      "elapsed_span_s": 120.0,
+      "bounds": [
+        0.0,
+        0.0,
+        0.002,
+        0.0
+      ]
+    },
+    {
+      "track_index": 1,
+      "segment_index": 2,
+      "name": "Exemplo equatorial · não é rota real",
+      "point_count": 2,
+      "edge_count": 1,
+      "distance_m": 111.19508023406384,
+      "ascent_m": 0.0,
+      "descent_m": 0.0,
+      "elevation_edges": 0,
+      "missing_elevation_edges": 1,
+      "usable_time_edges": 0,
+      "invalid_time_edges": 0,
+      "gap_time_edges": 1,
+      "usable_time_s": 0.0,
+      "usable_distance_m": 0.0,
+      "moving_time_s": 0.0,
+      "moving_distance_m": 0.0,
+      "average_speed_kmh": null,
+      "moving_speed_kmh": null,
+      "start_time": "2026-01-01T10:00:00Z",
+      "end_time": "2026-01-01T10:10:00Z",
+      "elapsed_span_s": 600.0,
+      "bounds": [
+        1.0,
+        0.0,
+        1.001,
+        0.0
+      ]
+    }
+  ]
+}
